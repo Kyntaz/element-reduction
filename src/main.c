@@ -73,7 +73,7 @@ int next(CardsPairIter* iter) {
 int tryReduce(Cards cards) {
     CardsPairIter iter = makeCardsPairIter(cards);
     int hasReduced = 0;
-    while(next(&iter)) {
+    while (next(&iter)) {
         hasReduced = hasReduced || tryReducePair(iter);
     }
     return hasReduced;
