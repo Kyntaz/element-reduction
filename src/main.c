@@ -62,9 +62,12 @@ int tryReducePair(CardsPairIter iter) {
 }
 
 int next(CardsPairIter* iter) {
+    while (iter->i2 < iter->cards.length && iter->cards.values[iter->i2] == 0) {
+        iter->i2++;
+    }
     iter->i1 = iter->i2;
     iter->i2++;
-    while (iter->i2 == 0 && iter->i2 < iter->cards.length) {
+    while (iter->i2 < iter->cards.length && iter->cards.values[iter->i2] == 0) {
         iter->i2++;
     }
     return iter->i2 < iter->cards.length;
