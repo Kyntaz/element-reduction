@@ -1,4 +1,4 @@
-# Element Reduction
+# Element Reduction 🌊 🗿 🔥 💨
 
 The solution to a puzzle a friend gave me, written in C (unfortunately, it was one of the rules).
 
