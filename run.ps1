@@ -8,3 +8,9 @@ $input = $length.toString() + $cards;
 echo "Input: " $input;
 $result = echo $input | ./build/main.exe;
 echo "Output: " $result;
+if (($result -like '*FW*') || ($result -like '*WF*') || ($result -like '*AE*') || ($result -like '*EA*')) {
+    echo "Invalid Output.";
+} else {
+    echo "Valid Output.";
+}
+ 
