@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-typedef struct sCards {
+typedef struct {
     unsigned int length;
     char* values;
 } Cards;
 
-typedef struct sCardsPairIter {
+typedef struct {
     Cards cards;
     unsigned int i1, i2;
 } CardsPairIter;
@@ -43,22 +44,22 @@ void getCards(CardsPairIter iter, char* card1, char* card2) {
     *card2 = iter.cards.values[iter.i2];
 } 
 
-int canReduce(char card1, char card2) {
+bool canReduce(char card1, char card2) {
     return (card1 == 'F' && card2 == 'W') ||
         (card1 == 'W' && card2 == 'F') ||
         (card1 == 'E' && card2 == 'A') ||
         (card1 == 'A' && card2 == 'E');
 }
 
-int tryReducePair(CardsPairIter iter) {
+bool tryReducePair(CardsPairIter iter) {
     char card1, card2;
     getCards(iter, &card1, &card2);
     if (canReduce(card1, card2)) {
         iter.cards.values[iter.i1] = 0;
         iter.cards.values[iter.i2] = 0;
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
 void advanceI2(CardsPairIter* iter) {
@@ -67,7 +68,7 @@ void advanceI2(CardsPairIter* iter) {
     }
 }
 
-int next(CardsPairIter* iter) {
+bool next(CardsPairIter* iter) {
     advanceI2(iter);
     iter->i1 = iter->i2;
     iter->i2++;
@@ -75,9 +76,9 @@ int next(CardsPairIter* iter) {
     return iter->i2 < iter->cards.length;
 }
 
-int tryReduce(Cards cards) {
+bool tryReduce(Cards cards) {
     CardsPairIter iter = makeCardsPairIter(cards);
-    int hasReduced = 0;
+    bool hasReduced = 0;
     while (next(&iter)) {
         hasReduced = hasReduced || tryReducePair(iter);
     }
