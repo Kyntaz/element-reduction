@@ -42,7 +42,7 @@ CardsPairIter makeCardsPairIter(Cards cards) {
 void getCards(CardsPairIter iter, char* card1, char* card2) {
     *card1 = iter.cards.values[iter.i1];
     *card2 = iter.cards.values[iter.i2];
-} 
+}
 
 bool canReduce(char card1, char card2) {
     return (card1 == 'F' && card2 == 'W') ||
